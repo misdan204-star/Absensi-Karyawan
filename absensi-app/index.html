@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Absensi Karyawan</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .status-valid { border-color: #4ade80 !important; box-shadow: 0 0 15px rgba(74, 222, 128, 0.2); }
+        .status-invalid { border-color: #f87171 !important; }
+        .card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; }
+        #log-absensi li { background: var(--card-bg); padding: 0.8rem 1rem; border-radius: 8px; border-left: 4px solid #10b981; margin-bottom: 0.8rem; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Absensi Digital</h1>
+            <p id="current-date">Memuat tanggal...</p>
+            <h2 id="current-time">--:--:--</h2>
+        </header>
+
+        <section class="location-section">
+            <div class="glass-card" style="margin-bottom: 1rem; padding: 1rem;">
+                <h3 style="margin-bottom: 0.5rem; font-size: 0.9rem;">📍 Lokasi GPS (Mentah)</h3>
+                <p id="location-status" style="display:none;">Mengambil lokasi...</p>
+                <div class="coordinates" style="background: rgba(0,0,0,0.2);">
+                    <span id="latitude">-</span>, <span id="longitude">-</span>
+                </div>
+            </div>
+            
+            <div id="status-card" class="card status-invalid">
+                <h3 style="margin-bottom: 0.8rem;">Status Area Kantor</h3>
+                <p id="label-status" style="font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; color: #f8fafc;">Menghitung area...</p>
+                <div class="coordinates" style="background: rgba(0,0,0,0.4); display: inline-block;">
+                    <span id="detail-jarak" style="color: #cbd5e1;">Akurasi sedang dihitung...</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="action-section">
+            <button id="btn-in" style="display:none;"></button>
+            <button id="btn-out" style="display:none;"></button>
+            
+            <!-- Tombol Baru (Kode Radius Anda) -->
+            <button id="btn-absen" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1.2rem; background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);" disabled>
+                BISMILLAH ABSEN MASUK
+            </button>
+        </section>
+
+        <section class="log-section">
+            <h3>Riwayat Hari Ini</h3>
+            <ul id="attendance-log" style="display:none;"></ul>
+            <ul id="log-absensi" style="list-style: none; margin-top: 1rem;">
+                <!-- Riwayat absen baru akan muncul di sini -->
+            </ul>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

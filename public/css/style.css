@@ -1,0 +1,203 @@
+:root {
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --secondary-color: #ec4899;
+    --secondary-hover: #db2777;
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at top right, rgba(79, 70, 229, 0.15) 0%, transparent 40%),
+                      radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.15) 0%, transparent 40%);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 480px;
+    padding: 2rem;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+header {
+    text-align: center;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #818cf8, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#current-date {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+}
+
+#current-time {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: -2px;
+}
+
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+}
+
+.glass-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #cbd5e1;
+}
+
+#location-status {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+}
+
+.coordinates {
+    font-family: monospace;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #38bdf8;
+    display: inline-block;
+    min-width: 180px;
+}
+
+.action-section {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
+}
+
+.btn-primary:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px 0 rgba(79, 70, 229, 0.5);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--secondary-color), var(--secondary-hover));
+    box-shadow: 0 4px 14px 0 rgba(236, 72, 153, 0.39);
+}
+
+.btn-secondary:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px 0 rgba(236, 72, 153, 0.5);
+}
+
+.log-section {
+    margin-top: 1rem;
+}
+
+.log-section h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #cbd5e1;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+#attendance-log {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+#attendance-log li {
+    background: var(--card-bg);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid var(--primary-color);
+    animation: slideIn 0.3s ease-out;
+}
+
+#attendance-log li.out {
+    border-left-color: var(--secondary-color);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        border-radius: 0;
+        min-height: 100vh;
+        border: none;
+    }
+}
