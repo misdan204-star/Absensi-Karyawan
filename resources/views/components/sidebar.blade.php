@@ -9,7 +9,7 @@
         <div class="flex items-center gap-3 mb-10 shrink-0">
             <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-indigo-500/20">✨</div>
             <div>
-                <h1 class="font-bold text-lg tracking-tight text-white leading-tight">V-ABSENSI</h1>
+                <h1 class="font-bold text-lg tracking-tight text-white leading-tight">Nustech</h1>
                 <p class="text-[10px] text-indigo-400 font-bold uppercase tracking-widest">Premium Edition</p>
             </div>
         </div>
