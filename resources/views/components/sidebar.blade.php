@@ -36,6 +36,12 @@
                 <span>Riwayat</span>
             </a>
 
+            <a href="{{ route('field-work.index') }}" 
+               class="sidebar-item {{ request()->routeIs('field-work.*') ? 'active' : '' }}">
+                <span class="icon">🏗️</span>
+                <span>Progres Lapangan</span>
+            </a>
+
             <!-- Admin Menus -->
             @if(auth()->user()->isAdmin())
                 <div class="pt-6">

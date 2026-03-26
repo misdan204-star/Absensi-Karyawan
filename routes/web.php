@@ -57,6 +57,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/leave', [LeaveController::class, 'index'])->name('leave.index');
     Route::get('/leave/create', [LeaveController::class, 'create'])->name('leave.create');
     Route::post('/leave', [LeaveController::class, 'store'])->name('leave.store');
+
+    // Field Work Routes
+    Route::resource('field-work', \App\Http\Controllers\FieldWorkReportController::class);
 });
 
 require __DIR__.'/auth.php';
