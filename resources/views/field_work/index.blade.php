@@ -47,7 +47,7 @@
                             {{ $report->location }}
                         </p>
                         @if(auth()->user()->role === 'admin')
-                        <p class="text-[10px] font-bold text-purple-400 mt-2 uppercase tracking-widest">Oleh: {{ $report->user->name }}</p>
+                        <p class="text-[10px] font-bold text-purple-400 mt-2 uppercase tracking-widest">Oleh: {{ $report->user?->name ?? 'Tidak Diketahui' }}</p>
                         @endif
                     </div>
                 </div>
@@ -57,10 +57,10 @@
                         LIHAT DETAIL
                     </a>
                     @if(auth()->user()->role === 'admin' || $report->user_id === auth()->id())
-                    <form action="{{ route('field-work.destroy', $report) }}" method="POST" onsubmit="return confirm('Hapus laporan ini?')">
+                    <form action="{{ route('field-work.destroy', $report) }}" method="POST" id="delete-form-{{ $report->id }}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="w-12 bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 py-3 rounded-xl transition flex items-center justify-center">
+                        <button type="button" onclick="confirmDelete('{{ $report->id }}')" class="w-12 bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 py-3 rounded-xl transition flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
@@ -78,4 +78,26 @@
             @endforelse
         </div>
     </div>
+    @push('scripts')
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: '⚠️ Apakah yakin ingin menghapus data ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#f43f5e',
+                cancelButtonColor: '#6366f1',
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal',
+                background: '#0a0a0f',
+                color: '#fff',
+                backdrop: 'rgba(0,0,0,0.8)'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            })
+        }
+    </script>
+    @endpush
 </x-layouts.premium>

@@ -42,6 +42,12 @@
                 <span>Progres Lapangan</span>
             </a>
 
+            <a href="{{ route('berita-acara.index') }}" 
+               class="sidebar-item {{ request()->routeIs('berita-acara.*') ? 'active' : '' }}">
+                <span class="icon">📑</span>
+                <span>Berita Acara</span>
+            </a>
+
             <!-- Admin Menus -->
             @if(auth()->user()->isAdmin())
                 <div class="pt-6">

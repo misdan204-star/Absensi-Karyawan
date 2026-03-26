@@ -59,7 +59,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/leave', [LeaveController::class, 'store'])->name('leave.store');
 
     // Field Work Routes
-    Route::resource('field-work', \App\Http\Controllers\FieldWorkReportController::class);
+    Route::resource('field-work', \App\Http\Controllers\FieldWorkReportController::class)
+        ->parameters(['field-work' => 'fieldWorkReport']);
+
+    // Berita Acara Routes
+    Route::get('berita-acara/{beritaAcara}/download', [\App\Http\Controllers\BeritaAcaraController::class, 'downloadPdf'])->name('berita-acara.download');
+    Route::get('berita-acara/{beritaAcara}/print', [\App\Http\Controllers\BeritaAcaraController::class, 'printPdf'])->name('berita-acara.print');
+    Route::resource('berita-acara', \App\Http\Controllers\BeritaAcaraController::class)
+        ->parameters(['berita-acara' => 'beritaAcara']);
 });
 
 require __DIR__.'/auth.php';

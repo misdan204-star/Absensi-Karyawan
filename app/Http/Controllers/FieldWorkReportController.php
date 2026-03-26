@@ -18,7 +18,7 @@ class FieldWorkReportController extends Controller
         if (Auth::user()->role === 'admin') {
             $reports = FieldWorkReport::with('user')->orderBy('date', 'desc')->get();
         } else {
-            $reports = FieldWorkReport::where('user_id', Auth::id())->orderBy('date', 'desc')->get();
+            $reports = FieldWorkReport::where('user_id', Auth::id())->with('user')->orderBy('date', 'desc')->get();
         }
 
         return view('field_work.index', compact('reports'));
@@ -67,7 +67,8 @@ class FieldWorkReportController extends Controller
      */
     public function show(FieldWorkReport $fieldWorkReport)
     {
-        if (Auth::user()->role !== 'admin' && $fieldWorkReport->user_id !== Auth::id()) {
+        $fieldWorkReport->load('user');
+        if (Auth::user()->role !== 'admin' && $fieldWorkReport->user_id != Auth::id()) {
             abort(403);
         }
 
@@ -95,7 +96,7 @@ class FieldWorkReportController extends Controller
      */
     public function destroy(FieldWorkReport $fieldWorkReport)
     {
-        if (Auth::user()->role !== 'admin' && $fieldWorkReport->user_id !== Auth::id()) {
+        if (Auth::user()->role !== 'admin' && $fieldWorkReport->user_id != Auth::id()) {
             abort(403);
         }
 
